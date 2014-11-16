@@ -1,0 +1,5 @@
+#!/bin/sh
+
+IP=$(networkctl status wlan0 | grep -v HW | grep Address | awk '{print $2}')
+
+docker run --rm -ti -v /home/teemow:/home/teemow -w $(pwd) --net=host teemow/castnow --myip $IP "$@"
